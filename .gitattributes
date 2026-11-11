@@ -1,0 +1,5 @@
+# Los scripts de entrada deben conservar saltos de línea LF para que
+# Docker/Linux (Render) puedan ejecutarlos. Sin esto, CRLF de Windows
+# rompe la ejecución del entrypoint.
+*.sh text eol=lf
+entrypoint.sh text eol=lf
