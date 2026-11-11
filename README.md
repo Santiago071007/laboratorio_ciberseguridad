@@ -28,7 +28,17 @@ que Render mantenga el servicio en estado **Live**.
 
 ## Despliegue en Render
 
-### 1. Servidor DMZ (primero)
+### Opción rápida: Blueprint (recomendada, un solo paso)
+Este repo incluye `render.yaml`, que define los 8 servicios. En Render:
+**New + → Blueprint → conecta este repositorio → Apply**. Render crea el DMZ y
+los 7 módulos automáticamente, con los nombres `...-dscantor` y pasando el host
+del DMZ a cada módulo mediante la variable `DMZ_HOST`. Espera a que todos queden
+en **Live**. (Requiere iniciar sesión en Render, autorizar el acceso a GitHub y
+aceptar sus términos; eso lo haces tú una sola vez.)
+
+### Opción manual (servicio por servicio)
+
+#### 1. Servidor DMZ (primero)
 1. Render → **New + → Web Service → Build and deploy from a Git repository**.
 2. Conecta este repositorio.
 3. Configura:

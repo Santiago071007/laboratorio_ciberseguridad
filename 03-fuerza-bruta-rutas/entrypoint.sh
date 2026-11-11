@@ -4,7 +4,8 @@
 # Prueba rutas comunes UNICAMENTE contra el servidor DMZ propio.
 set -u
 
-TARGET_URL="${TARGET_URL:-https://servidor-web-dmz-dscantor.onrender.com}"
+DMZ_HOST="${DMZ_HOST:-servidor-web-dmz-dscantor.onrender.com}"
+TARGET_URL="${TARGET_URL:-https://$DMZ_HOST}"
 PORT="${PORT:-8080}"
 INTERVALO="${INTERVALO:-60}"
 RUTAS="/ /index.html /admin /login /config.php /backup.zip /secret"

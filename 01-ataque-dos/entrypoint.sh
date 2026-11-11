@@ -5,7 +5,8 @@
 # laboratorio, con fines educativos (evidenciar trafico en los logs).
 set -u
 
-TARGET_URL="${TARGET_URL:-https://servidor-web-dmz-dscantor.onrender.com}"
+DMZ_HOST="${DMZ_HOST:-servidor-web-dmz-dscantor.onrender.com}"
+TARGET_URL="${TARGET_URL:-https://$DMZ_HOST}"
 PORT="${PORT:-8080}"
 RAFAGA="${RAFAGA:-25}"          # peticiones por rafaga (valor demostrativo)
 INTERVALO="${INTERVALO:-45}"    # segundos entre rafagas

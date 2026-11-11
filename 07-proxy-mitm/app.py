@@ -14,7 +14,8 @@ from flask import Flask, Response, request
 app = Flask(__name__)
 
 NOMBRE = os.environ.get("ESTUDIANTE_NOMBRE", "David Santiago Cantor Torres")
-TARGET = os.environ.get("TARGET_URL", "https://servidor-web-dmz-dscantor.onrender.com").rstrip("/")
+DMZ_HOST = os.environ.get("DMZ_HOST", "servidor-web-dmz-dscantor.onrender.com")
+TARGET = os.environ.get("TARGET_URL", f"https://{DMZ_HOST}").rstrip("/")
 PORT = int(os.environ.get("PORT", "8080"))
 
 BANNER = (

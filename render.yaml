@@ -1,0 +1,101 @@
+# Blueprint de Render para el Laboratorio de Ciberseguridad — dscantor
+# Crea los 8 servicios de una sola vez (Render -> New -> Blueprint).
+# Cada modulo atacante recibe el host real del DMZ mediante DMZ_HOST.
+services:
+  # 00 - Servidor DMZ (victima). Debe crearse primero; los demas lo referencian.
+  - type: web
+    name: servidor-web-dmz-dscantor
+    runtime: docker
+    rootDir: 00-servidor-dmz
+    plan: free
+    region: oregon
+    envVars:
+      - key: ESTUDIANTE_NOMBRE
+        value: "David Santiago Cantor Torres"
+
+  - type: web
+    name: modulo-01-dos-dscantor
+    runtime: docker
+    rootDir: 01-ataque-dos
+    plan: free
+    region: oregon
+    envVars:
+      - key: DMZ_HOST
+        fromService:
+          type: web
+          name: servidor-web-dmz-dscantor
+          property: host
+
+  - type: web
+    name: modulo-02-escaneo-dscantor
+    runtime: docker
+    rootDir: 02-escaneo-puertos
+    plan: free
+    region: oregon
+    envVars:
+      - key: DMZ_HOST
+        fromService:
+          type: web
+          name: servidor-web-dmz-dscantor
+          property: host
+
+  - type: web
+    name: modulo-03-rutas-dscantor
+    runtime: docker
+    rootDir: 03-fuerza-bruta-rutas
+    plan: free
+    region: oregon
+    envVars:
+      - key: DMZ_HOST
+        fromService:
+          type: web
+          name: servidor-web-dmz-dscantor
+          property: host
+
+  - type: web
+    name: modulo-04-dns-dscantor
+    runtime: docker
+    rootDir: 04-exfiltracion-dns
+    plan: free
+    region: oregon
+    envVars:
+      - key: DMZ_HOST
+        fromService:
+          type: web
+          name: servidor-web-dmz-dscantor
+          property: host
+
+  - type: web
+    name: modulo-05-suministro-dscantor
+    runtime: docker
+    rootDir: 05-cadena-suministro
+    plan: free
+    region: oregon
+
+  - type: web
+    name: modulo-06-credenciales-dscantor
+    runtime: docker
+    rootDir: 06-credential-stuffing
+    plan: free
+    region: oregon
+    envVars:
+      - key: DMZ_HOST
+        fromService:
+          type: web
+          name: servidor-web-dmz-dscantor
+          property: host
+
+  - type: web
+    name: modulo-07-mitm-dscantor
+    runtime: docker
+    rootDir: 07-proxy-mitm
+    plan: free
+    region: oregon
+    envVars:
+      - key: ESTUDIANTE_NOMBRE
+        value: "David Santiago Cantor Torres"
+      - key: DMZ_HOST
+        fromService:
+          type: web
+          name: servidor-web-dmz-dscantor
+          property: host
