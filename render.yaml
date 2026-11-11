@@ -1,6 +1,7 @@
 # Blueprint de Render para el Laboratorio de Ciberseguridad — dscantor
 # Crea los 8 servicios de una sola vez (Render -> New -> Blueprint).
-# Cada modulo atacante recibe el host real del DMZ mediante DMZ_HOST.
+# DMZ_HOST usa el host PUBLICO del DMZ (el nombre interno corto no resuelve
+# por DNS en el plan Free).
 services:
   # 00 - Servidor DMZ (victima). Debe crearse primero; los demas lo referencian.
   - type: web
@@ -21,10 +22,7 @@ services:
     region: oregon
     envVars:
       - key: DMZ_HOST
-        fromService:
-          type: web
-          name: servidor-web-dmz-dscantor
-          property: host
+        value: servidor-web-dmz-dscantor.onrender.com
 
   - type: web
     name: modulo-02-escaneo-dscantor
@@ -34,10 +32,7 @@ services:
     region: oregon
     envVars:
       - key: DMZ_HOST
-        fromService:
-          type: web
-          name: servidor-web-dmz-dscantor
-          property: host
+        value: servidor-web-dmz-dscantor.onrender.com
 
   - type: web
     name: modulo-03-rutas-dscantor
@@ -47,10 +42,7 @@ services:
     region: oregon
     envVars:
       - key: DMZ_HOST
-        fromService:
-          type: web
-          name: servidor-web-dmz-dscantor
-          property: host
+        value: servidor-web-dmz-dscantor.onrender.com
 
   - type: web
     name: modulo-04-dns-dscantor
@@ -60,10 +52,7 @@ services:
     region: oregon
     envVars:
       - key: DMZ_HOST
-        fromService:
-          type: web
-          name: servidor-web-dmz-dscantor
-          property: host
+        value: servidor-web-dmz-dscantor.onrender.com
 
   - type: web
     name: modulo-05-suministro-dscantor
@@ -80,10 +69,7 @@ services:
     region: oregon
     envVars:
       - key: DMZ_HOST
-        fromService:
-          type: web
-          name: servidor-web-dmz-dscantor
-          property: host
+        value: servidor-web-dmz-dscantor.onrender.com
 
   - type: web
     name: modulo-07-mitm-dscantor
@@ -95,7 +81,4 @@ services:
       - key: ESTUDIANTE_NOMBRE
         value: "David Santiago Cantor Torres"
       - key: DMZ_HOST
-        fromService:
-          type: web
-          name: servidor-web-dmz-dscantor
-          property: host
+        value: servidor-web-dmz-dscantor.onrender.com
